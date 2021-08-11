@@ -23,7 +23,6 @@ public  class Main {
 
         int targetNum = rnd.nextInt(9);
         for (int i = 3; i > 0; i--) {
-            System.out.println(targetNum);
             System.out.println("У вас осталось: " + i + " попытки(а)");
             System.out.print("Введите предполагаемое число: ");
             int answer = scan.nextInt();
@@ -32,7 +31,7 @@ public  class Main {
             } else if (answer < targetNum){
                 System.out.println("Не угадали! Загаданное число больше");
             } else {
-                System.out.println("Поздавляю! Вы угадали!!!");
+                System.out.println("Поздравляю! Вы угадали!!!");
                 break;
             }
         }
