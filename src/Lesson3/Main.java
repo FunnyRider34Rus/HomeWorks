@@ -6,20 +6,14 @@ import java.util.Scanner;
 public  class Main {
 
     public static void main(String[] args) {
-        Main main = new Main();
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Загадано случайное число от 0 до 9");
         theGame();
-        System.out.println("Повторить игру еще раз? (1 - Да, 0 - Нет)");
-        int d = scan.nextInt();
-        if (d == 1) {
-            theGame();
-        }
     }
 
     static void theGame(){
         Scanner scan = new Scanner(System.in);
         Random rnd = new Random();
+
+        System.out.println("Загадано случайное число от 0 до 9");
 
         int targetNum = rnd.nextInt(9);
         for (int i = 3; i > 0; i--) {
@@ -34,6 +28,11 @@ public  class Main {
                 System.out.println("Поздравляю! Вы угадали!!!");
                 break;
             }
+        }
+        System.out.println("Повторить игру еще раз? (1 - Да, 0 - Нет)");
+        int d = scan.nextInt();
+        if (d == 1) {
+            theGame();
         }
     }
 }
