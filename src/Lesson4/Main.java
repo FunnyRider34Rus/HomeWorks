@@ -3,7 +3,7 @@ package Lesson4;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {//инициализируем глобальные переменные
+public class Main {//Инициализируем глобальные переменные
     public static Scanner scan = new Scanner(System.in);
     public static Random rnd = new Random();
     public static char[][] field;
@@ -20,8 +20,7 @@ public class Main {//инициализируем глобальные пере�
         printField();
 
         while (true){
-            userTurn();//Ход игрока
-            printField();
+
             if (isFieldFull()){
                 System.out.println("Ничья!");
                 break;
@@ -30,12 +29,31 @@ public class Main {//инициализируем глобальные пере�
                System.out.println("Поздравляю! Вы победили!");
                break;
             }
+            if (checkWin(DOT_AI)){
+                System.out.println("К сожалению, выиграл компьютер!");
+                break;
+            }
+
+            System.out.println("Ход игрока");
+            userTurn();//Ход игрока
+            printField();
+
+            if (isFieldFull()){
+                System.out.println("Ничья!");
+                break;
+            }
+            if (checkWin(DOT_USER)){
+                System.out.println("Поздравляю! Вы победили!");
+                break;
+            }
+            if (checkWin(DOT_AI)){
+                System.out.println("К сожалению, выиграл компьютер!");
+                break;
+            }
+
+            System.out.println("Ход компьютера");
             aiTurn();//Ход ИИ
             printField();
-            if (checkWin(DOT_AI)){
-               System.out.println("К сожалению, выиграл компьютер!");
-               break;
-            }
         }
         System.out.println("Игра окончена!");
     }
@@ -59,6 +77,12 @@ public class Main {//инициализируем глобальные пере�
         }
     }
 
+    public static boolean isCellValid (int x, int y){//Проверка ячейки на диапазон координат и состояния ячейки
+        if (x < 0 || x >= size || y < 0 || y >= size) return false;
+        if (field[x][y] != DOT_EMPTY) return false;
+        return true;
+    }
+
     public static boolean isFieldFull(){//Проверка заполнения поля
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -69,38 +93,33 @@ public class Main {//инициализируем глобальные пере�
     }
 
     public static boolean checkWin(char isTurn){//Проверка условия победы
-        if(field[0][0] == isTurn && field[0][1] == isTurn && field[0][2] == isTurn) return true;
-        if(field[1][0] == isTurn && field[1][1] == isTurn && field[1][2] == isTurn) return true;
-        if(field[2][0] == isTurn && field[2][1] == isTurn && field[2][2] == isTurn) return true;
-        if(field[0][0] == isTurn && field[1][0] == isTurn && field[2][0] == isTurn) return true;
-        if(field[0][1] == isTurn && field[1][1] == isTurn && field[2][1] == isTurn) return true;
-        if(field[0][2] == isTurn && field[1][2] == isTurn && field[2][2] == isTurn) return true;
-        if(field[0][0] == isTurn && field[1][1] == isTurn && field[2][2] == isTurn) return true;
-        if(field[2][0] == isTurn && field[1][1] == isTurn && field[0][2] == isTurn) return true;
+        if(field[0][0] == isTurn && field[0][1] == isTurn && field[0][2] == isTurn) return true; //первая линия
+        if(field[1][0] == isTurn && field[1][1] == isTurn && field[1][2] == isTurn) return true; //вторая линия
+        if(field[2][0] == isTurn && field[2][1] == isTurn && field[2][2] == isTurn) return true; //третья линия
+        if(field[0][0] == isTurn && field[1][0] == isTurn && field[2][0] == isTurn) return true; //первый столбец
+        if(field[0][1] == isTurn && field[1][1] == isTurn && field[2][1] == isTurn) return true; //второй столбец
+        if(field[0][2] == isTurn && field[1][2] == isTurn && field[2][2] == isTurn) return true; //третий столбец
+        if(field[0][0] == isTurn && field[1][1] == isTurn && field[2][2] == isTurn) return true; //1ая диагональ
+        if(field[2][0] == isTurn && field[1][1] == isTurn && field[0][2] == isTurn) return true; //2ая диагональ
         return false;
     }
 
     public static void userTurn() {//Ход игрока
         int x, y;
         do {
-            System.out.print("Ваш ход. Введите номер строки:");
+            System.out.print("Введите номер строки:");
             x = scan.nextInt() - 1;
-            System.out.print("Ваш ход. Введите номер столбца:");
+            System.out.print("Введите номер столбца:");
             y = scan.nextInt() - 1;
         } while (!isCellValid(x, y));
             field [x][y] = DOT_USER;
-    }
-
-    public static boolean isCellValid (int x, int y){//Проверка ячейки на диапазон координат и состояния ячейки
-        if (x < 0 || x >= size || y < 0 || y >= size) return false;
-        if (field[x][y] != DOT_EMPTY) return false;
-        return true;
     }
 
     public static void aiTurn (){//Алгоритм хода ИИ
         int x = -1, y = -1;
         boolean aiWin = false;
         boolean userWin = false;
+
         for (int i = 0; i < size; i++) {//Ищем выигрышный ход
             for (int j = 0; j < size; j++) {
                 if (isCellValid(i, j)){
@@ -132,10 +151,18 @@ public class Main {//инициализируем глобальные пере�
         }
 
         if (!aiWin && !userWin){//Ищем куда сходить
-            do{
-                x = rnd.nextInt(size);
-                y = rnd.nextInt(size);
-            } while (!isCellValid(x, y));
+            if (isCellValid(1, 1)) {//пытаемся занять центр
+                x = 1;
+                y = 1;
+            } else if (isCellValid(0,0)) {//либо сильную позицию
+                x = 0;
+                y = 0;
+            } else {//когда совсем в тупике)))
+                do {
+                    x = rnd.nextInt(size);
+                    y = rnd.nextInt(size);
+                } while (!isCellValid(x, y));
+            }
         }
         field[x][y] = DOT_AI;
     }
