@@ -143,19 +143,17 @@ public class Main {//Инициализируем глобальные пере�
     public static void userTurn() {//Ход игрока
         int x, y;
         do {
-            System.out.print("Введите номер строки:");
-            x = userInput() - 1;
-            System.out.print("Введите номер столбца:");
-            y = userInput() - 1;
+            x = userInput("строки") - 1;
+            y = userInput("столбца") - 1;
         } while (!isCellValid(x, y));
             field [x][y] = DOT_USER;
     }
 
-    public static int userInput (){
+    public static int userInput (String str){
         int num;
         do {
+            System.out.printf("Введите номер %s: ", str);
             num = scan.nextInt();
-
         } while (num < 0 || num > size);
         return num;
     }
