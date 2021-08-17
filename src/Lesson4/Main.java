@@ -144,11 +144,20 @@ public class Main {//Инициализируем глобальные пере�
         int x, y;
         do {
             System.out.print("Введите номер строки:");
-            x = scan.nextInt() - 1;
+            x = userInput() - 1;
             System.out.print("Введите номер столбца:");
-            y = scan.nextInt() - 1;
+            y = userInput() - 1;
         } while (!isCellValid(x, y));
             field [x][y] = DOT_USER;
+    }
+
+    public static int userInput (){
+        int num;
+        do {
+            num = scan.nextInt();
+
+        } while (num < 0 || num > size);
+        return num;
     }
 
     public static void aiTurn (){//Алгоритм хода ИИ
