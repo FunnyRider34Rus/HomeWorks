@@ -16,7 +16,7 @@ public  class Main {
 
         System.out.println("Загадано случайное число от 0 до 9");
 
-        int targetNum = rnd.nextInt(9);
+        int targetNum = rnd.nextInt(10);
         for (int i = 3; i > 0; i--) {
             System.out.println("У вас осталось: " + i + " попытки(а)");
             System.out.print("Введите предполагаемое число: ");
