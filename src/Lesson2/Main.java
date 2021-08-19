@@ -160,9 +160,7 @@ public class Main {
             rSum = 0;
             for (int y1 = mass6.length - 1; y1 > x; y1--){
                 rSum += mass6[y1];
-                //System.out.println("\n" + lSum + " " + rSum);
             }
-            //System.out.println("\n" + lSum + " " + rSum);
             if (lSum == rSum) return true;
         } return false;
     }
