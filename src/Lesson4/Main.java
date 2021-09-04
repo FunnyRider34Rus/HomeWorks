@@ -4,7 +4,7 @@ package Lesson4;
  * Для реализации задания при игровом поле более 3х3 есть понимание,                                        *
  * что нужен другой принцип, основанный на переборе всех возможных вариантов.                               *
  * Скорее всего это можно сделать через рекурсию, но пока моих вычислительных мощностей не хватает)))       *
- * В первой версии был салбый ИИ основанный на Random (далее нашел где это можно использовать)                *
+ * В первой версии был салбый ИИ основанный на Random (далее нашел где это можно использовать)              *
  * Во второй усовершенствованый ИИ                                                                          *
  * В третьей версии переписал проверку условия победы через циклы (как-то сложно получилось)                *
  * Я понимаю, что код большой и где-то есть не доработки, но уже боюсь его трогать)))                       *
@@ -18,14 +18,13 @@ public class Main {//Инициализируем глобальные пере�
     public static Scanner scan = new Scanner(System.in);
     public static Random rnd = new Random();
     public static char[][] field;
-    public static int size;
+    public static int SIZE =3;
     public static final char DOT_EMPTY = '·';
     public static final char DOT_USER = 'X';
     public static final char DOT_AI = 'O';
 
     public static void main(String[] args) {//Точка входа
 
-        size = 3;
         initField();
         System.out.println("Добро пожаловать в игру Крестики-Нолики");
         printField();
@@ -70,18 +69,18 @@ public class Main {//Инициализируем глобальные пере�
     }
 
     public static void initField() {//Создаем игровое поле
-        field = new char[size][size];
-        //Заполняем матрицу размером size
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
+        field = new char[SIZE][SIZE];
+        //Заполняем матрицу размером SIZE
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
                 field[i][j] = DOT_EMPTY;
             }
         }
     }
 
     public static void printField(){//Вывод игрового поля
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size ; j++) {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE ; j++) {
                 System.out.print(field [i][j] + " ");
             }
             System.out.println();
@@ -89,14 +88,14 @@ public class Main {//Инициализируем глобальные пере�
     }
 
     public static boolean isCellValid (int x, int y){//Проверка ячейки на диапазон координат и состояния ячейки
-        if (x < 0 || x >= size || y < 0 || y >= size) return false;
+        if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) return false;
         if (field[x][y] != DOT_EMPTY) return false;
         return true;
     }
 
     public static boolean isFieldFull(){//Проверка заполнения поля
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
                 if (field [i][j] == DOT_EMPTY) return false;
             }
         }
@@ -108,19 +107,19 @@ public class Main {//Инициализируем глобальные пере�
         boolean diag1, diag2;
         diag1 = true;
         diag2 = true;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < SIZE; i++) {
             diag1 &= (field[i][i] == isTurn);
-            diag2 &= (field[size-i-1][i] == isTurn);
+            diag2 &= (field[SIZE-i-1][i] == isTurn);
         }
 
         if (diag1|| diag2) return true;
 
         //проверяем строки
         boolean lines = false, colums = false;
-        for (int x = 0; x < size; x++) {
+        for (int x = 0; x < SIZE; x++) {
             lines = true;
             colums = true;
-            for (int y = 0; y < size; y++) {
+            for (int y = 0; y < SIZE; y++) {
                 lines &= (field[x][y] == isTurn);
                 colums &= (field[y][x] == isTurn);
             }
@@ -137,7 +136,6 @@ public class Main {//Инициализируем глобальные пере�
         if(field[0][0] == isTurn && field[1][1] == isTurn && field[2][2] == isTurn) return true; //1ая диагональ
         if(field[2][0] == isTurn && field[1][1] == isTurn && field[0][2] == isTurn) return true; //2ая диагональ*/
         return false;
-
     }
 
     public static void userTurn() {//Ход игрока
@@ -154,7 +152,7 @@ public class Main {//Инициализируем глобальные пере�
         do {
             System.out.printf("Введите номер %s: ", str);
             num = scan.nextInt();
-        } while (num < 0 || num > size);
+        } while (num < 0 || num > SIZE);
         return num;
     }
 
@@ -163,8 +161,8 @@ public class Main {//Инициализируем глобальные пере�
         boolean aiWin = false;
         boolean userWin = false;
 
-        for (int i = 0; i < size; i++) {//Ищем выигрышный ход
-            for (int j = 0; j < size; j++) {
+        for (int i = 0; i < SIZE; i++) {//Ищем выигрышный ход
+            for (int j = 0; j < SIZE; j++) {
                 if (isCellValid(i, j)){
                     field[i][j] = DOT_AI;
                     if (checkWin(DOT_AI)){
@@ -178,8 +176,8 @@ public class Main {//Инициализируем глобальные пере�
         }
 
         if (!aiWin){//Ищем возможный выигрышный ход пользователя и блокируем его
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < size; j++) {
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
                     if (isCellValid(i, j)){
                         field[i][j] = DOT_USER;
                         if (checkWin(DOT_USER)){
@@ -202,8 +200,8 @@ public class Main {//Инициализируем глобальные пере�
                 y = 0;
             } else {//когда совсем в тупике)))
                 do {
-                    x = rnd.nextInt(size);
-                    y = rnd.nextInt(size);
+                    x = rnd.nextInt(SIZE);
+                    y = rnd.nextInt(SIZE);
                 } while (!isCellValid(x, y));
             }
         }
