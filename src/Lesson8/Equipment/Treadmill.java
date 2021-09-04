@@ -1,9 +1,16 @@
 package Lesson8.Equipment;
 
-public class Treadmill implements Equipment{
+import Lesson8.Participant.Participant;
+
+public class Treadmill implements Equipment {
     private int Length;
 
     public Treadmill(int length) {
         Length = length;
+    }
+
+    @Override
+    public void startCompetition(Participant participant) {
+        //return false;
     }
 }

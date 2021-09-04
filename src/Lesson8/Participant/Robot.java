@@ -1,6 +1,6 @@
-package Lesson8.Participants;
+package Lesson8.Participant;
 
-public class Robot implements Participants{
+public class Robot implements Participant {
     private String name;
     private int maxLength;
     private double maxHeight;
@@ -9,5 +9,15 @@ public class Robot implements Participants{
         this.name = name;
         this.maxLength = maxLength;
         this.maxHeight = maxHeight;
+    }
+
+    @Override
+    public void running(int maxLength) {
+
+    }
+
+    @Override
+    public void jumping(double maxHeight) {
+
     }
 }
