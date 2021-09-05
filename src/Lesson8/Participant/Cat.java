@@ -2,6 +2,7 @@ package Lesson8.Participant;
 
 public class Cat implements Participant {
     private String name;
+    private boolean isContinue = true;
     private int maxLength;
     private double maxHeight;
 
@@ -11,13 +12,31 @@ public class Cat implements Participant {
         this.maxHeight = maxHeight;
     }
 
-    @Override
-    public void running(int maxLength) {
-
+    public boolean isContinue(){
+        return isContinue;
     }
 
     @Override
-    public void jumping(double maxHeight) {
+    public void running(int length) {
+        if (isContinue) {
+            if (length <= maxLength) {
+                System.out.println(name + " пробежал");
+            } else {
+                isContinue = false;
+                System.out.println(name + " не пробежал");
+            }
+        }
+    }
 
+    @Override
+    public void jumping(double height) {
+        if (isContinue) {
+            if (height <= maxHeight) {
+                System.out.println(name + " перепрыгнул");
+            } else {
+                isContinue = false;
+                System.out.println(name + " не перепрыгнул");
+            }
+        }
     }
 }

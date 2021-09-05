@@ -23,10 +23,11 @@ public class Main {
                 new Treadmill(1500)
         };
 
-        for (int i = 0; i < participants.length; i++) {
-            for (int j = 0; j < equipments.length; j++) {
-                equipments[j].startCompetition(participants[i]);
+        for (Participant participant : participants) {
+            for (Equipment equipment : equipments) {
+                equipment.startCompetition(participant);
             }
+            System.out.println();
         }
     }
 }

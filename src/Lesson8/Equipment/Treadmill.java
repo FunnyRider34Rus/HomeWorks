@@ -11,6 +11,8 @@ public class Treadmill implements Equipment {
 
     @Override
     public void startCompetition(Participant participant) {
-        //return false;
+        System.out.println("Участник пробует пройти следующее испытание: беговая дорожка " + Length);
+        participant.running(Length);
     }
+
 }

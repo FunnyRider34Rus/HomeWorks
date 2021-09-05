@@ -11,6 +11,7 @@ public class Barrier implements Equipment {
 
     @Override
     public void startCompetition(Participant participant) {
-        //return false;
+        System.out.println("Участник пробует пройти следующее испытание: барьер высотой " + Height);
+        participant.jumping(Height);
     }
 }
