@@ -5,6 +5,13 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
+        doFirstExample();
+
+        doSecondExample();
+
+    }
+
+    public static void doFirstExample(){
         String[] array = {"ноль", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять", "восемь", "семь", "шесть", "пять"};
 
         System.out.print("Исходный массив: ");
@@ -12,14 +19,6 @@ public class Main {
             System.out.print(item + ", ");
         }
         System.out.println();
-
-        doFirstExample(array);
-
-        doSecondExample();
-
-    }
-
-    public static void doFirstExample(String array[]){
         Set<String> array_temp = new HashSet<String>();
 
         for (String item : array){
@@ -72,7 +71,6 @@ public class Main {
                     exit = false;
                     break;
             }
-
         }
     }
 }
