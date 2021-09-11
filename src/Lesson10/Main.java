@@ -15,6 +15,8 @@ public class Main {
 
         doFirstExample(array);
 
+        doSecondExample();
+
     }
 
     public static void doFirstExample(String array[]){
@@ -40,6 +42,37 @@ public class Main {
 
         for (Map.Entry<String, Integer> o : array_final.entrySet()) {
             System.out.println(o.getKey() + " содержится в количестве " + o.getValue());
+        }
+    }
+
+    public static void doSecondExample(){                                       //телефонный справочник
+        Scanner scr = new Scanner(System.in);
+        PhoneBook phoneBook = new PhoneBook();
+        System.out.println();
+
+        boolean exit = true;
+
+        phoneBook.init();                                                       //создаём тестовую базу
+
+        while (exit){
+            System.out.println("Главное меню телефонного справочника:");
+            System.out.println("1 - Вывести весь справочник");
+            System.out.println("2 - Добавить новую запись");
+            System.out.println("3 - Поиск по фамилии");
+            System.out.println("4 - Выход");
+            System.out.print("Введите номер пункта меню: ");
+            int menu = scr.nextInt();
+            switch (menu){
+                case 1: phoneBook.printPB(); break;
+                case 2:
+                    phoneBook.addPhone(); break;
+                case 3:
+                    phoneBook.findByName(); break;
+                default:
+                    exit = false;
+                    break;
+            }
+
         }
     }
 }
