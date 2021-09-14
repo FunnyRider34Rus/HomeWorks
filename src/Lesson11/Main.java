@@ -7,21 +7,21 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scr = new Scanner(System.in);
-        Object[] array = {"1", "2", "3", "4", "5"};
+        Object[] array = {"1", "q", 1.5f, 10L, "5"};                                                                    //создаем массив содержащий ссылочны типы данных
         System.out.print("Исходный массив: ");
 
         for (Object x : array) {
             System.out.print(x + " ");
         }
 
-        System.out.println();
+        System.out.println();                                                                                           //запрашиваем у пользователя индексы данных для корректировки массива
         System.out.print("Введите номер элемента массива, от 1 до " + array.length + ", который нужно переместить: ");
         int fistIndex = scr.nextInt() - 1;
         System.out.print("Введите номер элемента массива, от 1 до " + array.length + ",куда нужно переместить: ");
         int secondIndex = scr.nextInt() - 1;
 
         System.out.print("Модифицированный массив: ");
-        System.out.println(toArrayList(exchangeData(array, fistIndex, secondIndex)));
+        System.out.println(toArrayList(exchangeData(array, fistIndex, secondIndex)));                                   //производим изменение массива и преобразуем его в ArrayList с одновременным выводом
 
     }
 
