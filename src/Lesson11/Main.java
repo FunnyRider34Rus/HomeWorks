@@ -25,7 +25,7 @@ public class Main {
 
     }
 
-    public static <T> T[] exchangeData(T[] array, int firstIndex, int secondIndex){
+    public static <T> T[] exchangeData(T[] array, int firstIndex, int secondIndex){                                     //метод модификации массива
 
         T buffer = array[firstIndex];
         array[firstIndex] = array[secondIndex];
@@ -34,7 +34,7 @@ public class Main {
         return array;
     }
 
-    public static <T> ArrayList<T> toArrayList(T[] array){
+    public static <T> ArrayList<T> toArrayList(T[] array){                                                              //создаем ArrayList, который ссылается на массив
         return new ArrayList<>(Arrays.asList(array));
     }
 }
