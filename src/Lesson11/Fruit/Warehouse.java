@@ -3,18 +3,18 @@ package Lesson11.Fruit;
 public class Warehouse {
     public static void run(){
 
-        Fruit apple = new Apple();
-        Fruit orange = new Orange();
+        Apple apple = new Apple();
+        Orange orange = new Orange();
 
-        Box<Fruit> box1 = new Box<>();
-        Box<Fruit> box2 = new Box<>();
-        Box<Fruit> box3 = new Box<>();
+        Box<Apple> box1 = new Box<>();
+        Box<Orange> box2 = new Box<>();
+        Box<Apple> box3 = new Box<>();
 
-        box1.setBox(apple);
+        box1.addFruit(apple);
         box1.addFruit(apple);
         box1.addFruit(apple);//ложим в 1ую коробку 3и яблока
 
-        box2.setBox(orange);
+        box2.addFruit(orange);
         box2.addFruit(orange);//ложим в 2ую коробку 2и апельсина
 
         System.out.println("Вес первой коробки: " + box1.getWeight());

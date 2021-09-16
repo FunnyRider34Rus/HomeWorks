@@ -21,7 +21,7 @@ public class Box <CONTENT extends Fruit>{
         return this.getWeight() == anotherBox.getWeight();
     }
 
-    public void moveToAnotherBox (Box<Fruit> anotherBox){
+    public void moveToAnotherBox (Box<CONTENT> anotherBox){
         if (anotherBox.fruits.isEmpty()){
             anotherBox.fruits.addAll(this.fruits);
             this.fruits.clear();
@@ -29,9 +29,8 @@ public class Box <CONTENT extends Fruit>{
     }
 
     public void addFruit(CONTENT fruit){
-        if (fruits.contains(fruit)){                                                                                    //это костыль, так как еще не придумал
-            fruits.add(fruit);                                                                                          //как защититься от добавления разных фруктов в одну коробку
-        }
+
+        fruits.add(fruit);
     }
 }
 
