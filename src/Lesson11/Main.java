@@ -1,6 +1,14 @@
 package Lesson11;
 
+import Lesson11.Fruit.Warehouse;
 import java.util.*;
+
+/*хоть и сдаю позже, чем был разбор этого дз
+но все равно старался все сделать сам. Единственное, что использовал <?>
+однако, если бы писал не в IDEA, то без её подсказок - было бы реально тяжело!
+задание интересное, но нужно еще практиковаться, потому что чувствую
+что еще не до конца понял принципы применения обобщений.
+ */
 
 public class Main {
 
@@ -23,6 +31,8 @@ public class Main {
         System.out.print("Модифицированный массив: ");
         System.out.println(toArrayList(exchangeData(array, fistIndex, secondIndex)));                                   //производим изменение массива и преобразуем его в ArrayList с одновременным выводом
 
+        Warehouse.run();                                                                                                //запускаем 11.3
+
     }
 
     public static <T> T[] exchangeData(T[] array, int firstIndex, int secondIndex){                                     //метод модификации массива
@@ -37,4 +47,6 @@ public class Main {
     public static <T> ArrayList<T> toArrayList(T[] array){                                                              //создаем ArrayList, который ссылается на массив
         return new ArrayList<>(Arrays.asList(array));
     }
+
+
 }
