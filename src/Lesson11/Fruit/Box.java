@@ -22,10 +22,8 @@ public class Box <CONTENT extends Fruit>{
     }
 
     public void moveToAnotherBox (Box<CONTENT> anotherBox){
-        if (anotherBox.fruits.isEmpty()){
             anotherBox.fruits.addAll(this.fruits);
             this.fruits.clear();
-        }
     }
 
     public void addFruit(CONTENT fruit){
