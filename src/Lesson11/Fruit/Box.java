@@ -29,7 +29,9 @@ public class Box <CONTENT extends Fruit>{
     }
 
     public void addFruit(CONTENT fruit){
-        fruits.add(fruit);
+        if (fruits.contains(fruit)){                                                                                    //это костыль, так как еще не придумал
+            fruits.add(fruit);                                                                                          //как защититься от добавления разных фруктов в одну коробку
+        }
     }
 }
 

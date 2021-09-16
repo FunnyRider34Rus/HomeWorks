@@ -10,10 +10,11 @@ public class Warehouse {
         Box<Fruit> box2 = new Box<>();
         Box<Fruit> box3 = new Box<>();
 
-        box1.addFruit(apple);
+        box1.setBox(apple);
         box1.addFruit(apple);
         box1.addFruit(apple);//ложим в 1ую коробку 3и яблока
-        box2.addFruit(orange);
+
+        box2.setBox(orange);
         box2.addFruit(orange);//ложим в 2ую коробку 2и апельсина
 
         System.out.println("Вес первой коробки: " + box1.getWeight());
