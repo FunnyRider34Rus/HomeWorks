@@ -13,8 +13,8 @@ public class Main {
         float[] array = initArray();
         SingleThread thd0 = new SingleThread(array, 0);
 
-        thd0.run();
-        /*try{
+        thd0.run();                                                                                                     //обработка в майне
+        /*try{                                                                                                          //но можно и такой вариант
             thd0.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
